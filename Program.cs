@@ -1,17 +1,22 @@
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+
 using Aspnet.React.Data;
 using Aspnet.React.Mapping;
 using Aspnet.React.Models;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+
 using Serilog;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -105,14 +110,6 @@ authenticationBuilder.AddJwtBearer(options =>
 {
     options.SaveToken = true;
     options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = AuthOptions.AUDIENCE,
-        ValidIssuer = AuthOptions.ISSUER,
-        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey()
-    };
 
     options.Events = new JwtBearerEvents
     {
