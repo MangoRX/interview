@@ -56,8 +56,11 @@ public class MedsController : ControllerBase
         /**
         * Instructions
         * Given this API endpoint for the FDA NDC database: https://api.fda.gov/drug/ndc.json?search=finished:true&limit=10
-        * Send the list of NDCs to the client.
-        * Note: Some drugs have multiple packages, so you may include variations as a list of comma separated values.
+        * Calculate some stats for the NDCs.
+        * Total: Count of NDCs, this simply matches the limit in the url.
+        * Num_Oral: Count of NDCs with the route "Oral"
+        * Num_Topical: Count of NDCs with the route "Topical"
+        * Num_Other: Count of NDCs with all other routes "Other"
         */
         var medications = new MedicationMeta
         {
